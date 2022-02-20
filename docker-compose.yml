@@ -12,3 +12,9 @@ services:
       - ./database/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
     ports:
       - "5432:5432"
+  api:
+    build: ./
+    volumes:
+      - ./:/api
+    ports:
+      - 5000:5000

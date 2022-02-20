@@ -34,6 +34,12 @@ app.get("/personen", async (_req, res) => {
   }
 });
 
+app.get("/kanker", async (_req, res) => {
+  res.json({
+    hallo: "poelie",
+  });
+});
+
 app.listen(5000, () => {
   console.log("server running on port 5000");
 });
