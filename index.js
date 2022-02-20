@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const pool = require("./database/db");
+const moment = require("moment");
+moment().format();
 
 app.use(express.json());
 
@@ -34,9 +36,9 @@ app.get("/personen", async (_req, res) => {
   }
 });
 
-app.get("/kanker", async (_req, res) => {
+app.get("/", async (_req, res) => {
   res.json({
-    hallo: "poelie",
+    hallo: "dit is een api",
   });
 });
 

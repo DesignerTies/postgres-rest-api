@@ -11,10 +11,12 @@ services:
       - ./pgdata:/var/lib/postgresql/data
       - ./database/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
     ports:
-      - "5432:5432"
+      - "5433:5432"
   api:
-    build: ./
+    build: ./ --no-cache
     volumes:
       - ./:/api
     ports:
       - 5000:5000
+    depends_on:
+      - db
