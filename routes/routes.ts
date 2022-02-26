@@ -4,21 +4,19 @@ const router = express.Router();
 
 const prisma = new PrismaClient();
 
-router.get('/', (_req: any, res: any) => {
+router.get('/', (_req, res) => {
   res.send('Simpele postgres api');
 });
 
-router.get('/personen', async (_req: any, res: any) => {
+router.get('/personen', async (_req, res) => {
   const allePersonen: object = await prisma.persoon.findMany();
   res.json(allePersonen);
 });
 
-router.post('/persoon', async (req: any, res: any, next: any) => {
+router.post('/persoon', async (req, res, next) => {
   const data = req.body;
-  const naam = data.naam;
-  const leeftijd = data.leeftijd;
-
-  console.log(typeof data);
+  const naam: string = data.naam;
+  const leeftijd: number = data.leeftijd;
 
   try {
     const newPerson = await prisma.persoon.create({
@@ -27,11 +25,10 @@ router.post('/persoon', async (req: any, res: any, next: any) => {
         leeftijd: leeftijd,
       },
     });
-
     res.json(newPerson);
-  } catch (error) {
-    console.log(error);
-    next(error);
+  } catch (e) {
+    console.log(e);
+    next(e);
   }
 });
 
