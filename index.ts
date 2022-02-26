@@ -7,6 +7,6 @@ app.use(cors());
 app.use(express.json());
 app.use('/', routes);
 
-app.listen(5000, () => {
+app.listen(5001, 'localhost', () => {
   console.log('server running on port 5000');
 });
