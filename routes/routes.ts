@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-const pool = require('../database/db');
 const express = require('express');
 const router = express.Router();
 
