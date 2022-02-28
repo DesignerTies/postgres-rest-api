@@ -13,9 +13,24 @@ router.get('/personen', async (_req, res) => {
   res.json(allePersonen);
 });
 
+router.get('/personen/:naam', async (req, res) => {
+  const naam: string = req.params.naam;
+
+  const aanvraagFilms: object = await prisma.persoon.findMany({
+    where: {
+      naam: {
+        contains: naam,
+        mode: 'insensitive',
+      },
+    },
+  });
+
+  res.json(aanvraagFilms);
+});
+
 router.post('/persoon', async (req, res, next) => {
   const data = req.body;
-  const naam: string = data.naam;
+  const naam: string = data.naam.toLowercase();
   const leeftijd: number = data.leeftijd;
 
   try {
